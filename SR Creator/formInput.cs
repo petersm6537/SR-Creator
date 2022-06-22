@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SR_Creator
 {
-    public partial class formHome : Form
+    public partial class formInput : Form
     {
-        public formHome()
+        public formInput()
         {
             InitializeComponent();
         }

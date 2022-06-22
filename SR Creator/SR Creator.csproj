@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="formHome - Copy.cs">
+    <Compile Include="formInput.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formHome - Copy.Designer.cs">
-      <DependentUpon>formHome - Copy.cs</DependentUpon>
+    <Compile Include="formInput.Designer.cs">
+      <DependentUpon>formInput.cs</DependentUpon>
     </Compile>
     <Compile Include="formHome.cs">
       <SubType>Form</SubType>
@@ -60,11 +60,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="formHome - Copy.resx">
-      <DependentUpon>formHome - Copy.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="formHome.resx">
       <DependentUpon>formHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInput.resx">
+      <DependentUpon>formInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

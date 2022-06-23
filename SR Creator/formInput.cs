@@ -106,7 +106,7 @@ namespace SR_Creator
             //Creates new XML object and establishes elements
             XDocument configXML = new XDocument(
                 new XComment("Comment"),
-                new XElement("Root",
+                new XElement("SlitRingDimensions",
                     new XElement("insideDiameter", globalVariables.insideDiameter),
                     new XElement("crossSection", globalVariables.crossSection),
                     new XElement("slitThickness", globalVariables.slitThickness),

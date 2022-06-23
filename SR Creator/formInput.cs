@@ -16,5 +16,30 @@ namespace SR_Creator
         {
             InitializeComponent();
         }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            //Press back button, go back a tab
+            int selectedTab = tabControl.SelectedIndex;
+            if (tabControl.SelectedIndex > 0)
+            {
+                tabControl.SelectedIndex = selectedTab - 1;
+            }
+        }
+
+        private void forwardButton_Click(object sender, EventArgs e)
+        {
+            //Press forward button, go forward a tab
+            int selectedTab = tabControl.SelectedIndex;
+            if(tabControl.SelectedIndex < 3)
+            {
+                tabControl.SelectedIndex = selectedTab + 1;
+            }
+        }
     }
 }

@@ -31,33 +31,41 @@ namespace SR_Creator
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.backButton = new System.Windows.Forms.Button();
+            this.forwardButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.labelPartNumber = new System.Windows.Forms.Label();
             this.inputPartNumber = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.backButton = new System.Windows.Forms.Button();
-            this.forwardButton = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.inputSlitAngle = new System.Windows.Forms.ComboBox();
+            this.inputSlitThickness = new System.Windows.Forms.ComboBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.createConfigButton = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.inputInsideDiameter = new System.Windows.Forms.NumericUpDown();
+            this.inputCrossSection = new System.Windows.Forms.NumericUpDown();
+            this.inputThickness = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inputInsideDiameter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputCrossSection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputThickness)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -90,6 +98,29 @@ namespace SR_Creator
             this.tableLayoutPanel2.Size = new System.Drawing.Size(328, 72);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // backButton
+            // 
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.backButton.Location = new System.Drawing.Point(3, 3);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(158, 66);
+            this.backButton.TabIndex = 6;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // forwardButton
+            // 
+            this.forwardButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.forwardButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forwardButton.Location = new System.Drawing.Point(167, 3);
+            this.forwardButton.Name = "forwardButton";
+            this.forwardButton.Size = new System.Drawing.Size(158, 66);
+            this.forwardButton.TabIndex = 5;
+            this.forwardButton.Text = ">";
+            this.forwardButton.UseVisualStyleBackColor = true;
+            this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
+            // 
             // tabControl
             // 
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -103,6 +134,7 @@ namespace SR_Creator
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(328, 227);
             this.tabControl.TabIndex = 1;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -114,17 +146,6 @@ namespace SR_Creator
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Number";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tableLayoutPanel4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(320, 201);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Dimensions";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -140,7 +161,6 @@ namespace SR_Creator
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 195);
             this.tableLayoutPanel3.TabIndex = 0;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // labelPartNumber
             // 
@@ -163,37 +183,16 @@ namespace SR_Creator
             this.inputPartNumber.Size = new System.Drawing.Size(308, 20);
             this.inputPartNumber.TabIndex = 1;
             // 
-            // tabPage3
+            // tabPage2
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(320, 201);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Create";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // backButton
-            // 
-            this.backButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.backButton.Location = new System.Drawing.Point(3, 3);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(158, 66);
-            this.backButton.TabIndex = 0;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
-            // forwardButton
-            // 
-            this.forwardButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.forwardButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forwardButton.Location = new System.Drawing.Point(167, 3);
-            this.forwardButton.Name = "forwardButton";
-            this.forwardButton.Size = new System.Drawing.Size(158, 66);
-            this.forwardButton.TabIndex = 1;
-            this.forwardButton.Text = ">";
-            this.forwardButton.UseVisualStyleBackColor = true;
-            this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
+            this.tabPage2.Controls.Add(this.tableLayoutPanel4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(320, 201);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Dimensions";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -205,11 +204,11 @@ namespace SR_Creator
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.label4, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.textBox4, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.textBox5, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.inputSlitAngle, 1, 4);
+            this.tableLayoutPanel4.Controls.Add(this.inputSlitThickness, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.inputInsideDiameter, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.inputCrossSection, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.inputThickness, 1, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -277,45 +276,123 @@ namespace SR_Creator
             this.label5.Text = "Slit Angle";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // inputSlitAngle
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(160, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 20);
-            this.textBox1.TabIndex = 5;
+            this.inputSlitAngle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputSlitAngle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.inputSlitAngle.FormattingEnabled = true;
+            this.inputSlitAngle.Items.AddRange(new object[] {
+            "20.5",
+            "25",
+            "45"});
+            this.inputSlitAngle.Location = new System.Drawing.Point(160, 159);
+            this.inputSlitAngle.Name = "inputSlitAngle";
+            this.inputSlitAngle.Size = new System.Drawing.Size(151, 21);
+            this.inputSlitAngle.TabIndex = 4;
             // 
-            // textBox2
+            // inputSlitThickness
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(160, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 20);
-            this.textBox2.TabIndex = 6;
+            this.inputSlitThickness.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputSlitThickness.FormattingEnabled = true;
+            this.inputSlitThickness.Items.AddRange(new object[] {
+            ".005",
+            ".01"});
+            this.inputSlitThickness.Location = new System.Drawing.Point(160, 120);
+            this.inputSlitThickness.Name = "inputSlitThickness";
+            this.inputSlitThickness.Size = new System.Drawing.Size(151, 21);
+            this.inputSlitThickness.TabIndex = 3;
             // 
-            // textBox3
+            // tabPage3
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(160, 81);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(151, 20);
-            this.textBox3.TabIndex = 7;
+            this.tabPage3.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(320, 201);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Create";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // tableLayoutPanel5
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(160, 120);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(151, 20);
-            this.textBox4.TabIndex = 8;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Controls.Add(this.createConfigButton, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.radioButton1, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(320, 201);
+            this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // textBox5
+            // createConfigButton
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(160, 159);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(151, 20);
-            this.textBox5.TabIndex = 9;
+            this.createConfigButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createConfigButton.Location = new System.Drawing.Point(3, 3);
+            this.createConfigButton.Name = "createConfigButton";
+            this.createConfigButton.Size = new System.Drawing.Size(234, 94);
+            this.createConfigButton.TabIndex = 0;
+            this.createConfigButton.Text = "Create Config";
+            this.createConfigButton.UseVisualStyleBackColor = true;
+            this.createConfigButton.Click += new System.EventHandler(this.createConfigButton_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButton1.Location = new System.Drawing.Point(3, 103);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(234, 95);
+            this.radioButton1.TabIndex = 1;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Generate Solidworks File";
+            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // inputInsideDiameter
+            // 
+            this.inputInsideDiameter.DecimalPlaces = 4;
+            this.inputInsideDiameter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputInsideDiameter.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            196608});
+            this.inputInsideDiameter.Location = new System.Drawing.Point(160, 3);
+            this.inputInsideDiameter.Name = "inputInsideDiameter";
+            this.inputInsideDiameter.Size = new System.Drawing.Size(151, 20);
+            this.inputInsideDiameter.TabIndex = 0;
+            // 
+            // inputCrossSection
+            // 
+            this.inputCrossSection.DecimalPlaces = 4;
+            this.inputCrossSection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputCrossSection.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            196608});
+            this.inputCrossSection.Location = new System.Drawing.Point(160, 42);
+            this.inputCrossSection.Name = "inputCrossSection";
+            this.inputCrossSection.Size = new System.Drawing.Size(151, 20);
+            this.inputCrossSection.TabIndex = 1;
+            // 
+            // inputThickness
+            // 
+            this.inputThickness.DecimalPlaces = 4;
+            this.inputThickness.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputThickness.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            196608});
+            this.inputThickness.Location = new System.Drawing.Point(160, 81);
+            this.inputThickness.Name = "inputThickness";
+            this.inputThickness.Size = new System.Drawing.Size(151, 20);
+            this.inputThickness.TabIndex = 2;
             // 
             // formInput
             // 
@@ -328,15 +405,22 @@ namespace SR_Creator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SR Creator - Input";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.formInput_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inputInsideDiameter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputCrossSection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputThickness)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -360,10 +444,13 @@ namespace SR_Creator
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox inputSlitAngle;
+        private System.Windows.Forms.ComboBox inputSlitThickness;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button createConfigButton;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.NumericUpDown inputInsideDiameter;
+        private System.Windows.Forms.NumericUpDown inputCrossSection;
+        private System.Windows.Forms.NumericUpDown inputThickness;
     }
 }

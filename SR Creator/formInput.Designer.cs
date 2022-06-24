@@ -47,13 +47,13 @@ namespace SR_Creator
             this.label5 = new System.Windows.Forms.Label();
             this.inputSlitAngle = new System.Windows.Forms.ComboBox();
             this.inputSlitThickness = new System.Windows.Forms.ComboBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.createConfigButton = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.inputInsideDiameter = new System.Windows.Forms.NumericUpDown();
             this.inputCrossSection = new System.Windows.Forms.NumericUpDown();
             this.inputThickness = new System.Windows.Forms.NumericUpDown();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.createConfigButton = new System.Windows.Forms.Button();
+            this.createSWInput = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -61,11 +61,11 @@ namespace SR_Creator
             this.tableLayoutPanel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputInsideDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCrossSection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputThickness)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -302,56 +302,6 @@ namespace SR_Creator
             this.inputSlitThickness.Size = new System.Drawing.Size(151, 21);
             this.inputSlitThickness.TabIndex = 3;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.tableLayoutPanel5);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(320, 201);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Create";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.Controls.Add(this.createConfigButton, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.radioButton1, 0, 1);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(320, 201);
-            this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // createConfigButton
-            // 
-            this.createConfigButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createConfigButton.Location = new System.Drawing.Point(3, 3);
-            this.createConfigButton.Name = "createConfigButton";
-            this.createConfigButton.Size = new System.Drawing.Size(234, 94);
-            this.createConfigButton.TabIndex = 0;
-            this.createConfigButton.Text = "Create Config";
-            this.createConfigButton.UseVisualStyleBackColor = true;
-            this.createConfigButton.Click += new System.EventHandler(this.createConfigButton_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton1.Location = new System.Drawing.Point(3, 103);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(234, 95);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Generate Solidworks File";
-            this.radioButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // inputInsideDiameter
             // 
             this.inputInsideDiameter.DecimalPlaces = 4;
@@ -394,6 +344,53 @@ namespace SR_Creator
             this.inputThickness.Size = new System.Drawing.Size(151, 20);
             this.inputThickness.TabIndex = 2;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(320, 201);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Create";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Controls.Add(this.createConfigButton, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.createSWInput, 0, 1);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(320, 201);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // createConfigButton
+            // 
+            this.createConfigButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createConfigButton.Location = new System.Drawing.Point(3, 3);
+            this.createConfigButton.Name = "createConfigButton";
+            this.createConfigButton.Size = new System.Drawing.Size(234, 94);
+            this.createConfigButton.TabIndex = 0;
+            this.createConfigButton.Text = "Create Config";
+            this.createConfigButton.UseVisualStyleBackColor = true;
+            this.createConfigButton.Click += new System.EventHandler(this.createConfigButton_Click);
+            // 
+            // createSWInput
+            // 
+            this.createSWInput.AutoSize = true;
+            this.createSWInput.Location = new System.Drawing.Point(3, 103);
+            this.createSWInput.Name = "createSWInput";
+            this.createSWInput.Size = new System.Drawing.Size(125, 17);
+            this.createSWInput.TabIndex = 1;
+            this.createSWInput.Text = "Create Solidwork File";
+            this.createSWInput.UseVisualStyleBackColor = true;
+            // 
             // formInput
             // 
             this.AcceptButton = this.forwardButton;
@@ -415,12 +412,12 @@ namespace SR_Creator
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputInsideDiameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCrossSection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputThickness)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -448,9 +445,9 @@ namespace SR_Creator
         private System.Windows.Forms.ComboBox inputSlitThickness;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button createConfigButton;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.NumericUpDown inputInsideDiameter;
         private System.Windows.Forms.NumericUpDown inputCrossSection;
         private System.Windows.Forms.NumericUpDown inputThickness;
+        private System.Windows.Forms.CheckBox createSWInput;
     }
 }

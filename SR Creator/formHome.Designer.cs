@@ -105,6 +105,7 @@ namespace SR_Creator
             this.inputUpdate.TabIndex = 2;
             this.inputUpdate.Text = "Update SW File";
             this.inputUpdate.UseVisualStyleBackColor = true;
+            this.inputUpdate.Click += new System.EventHandler(this.inputUpdate_Click);
             // 
             // inputSettings
             // 

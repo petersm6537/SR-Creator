@@ -16,11 +16,21 @@ namespace SR_Creator
         {
             InitializeComponent();
         }
+        #region Events
+
 
         private void inputNew_Click(object sender, EventArgs e)
         {
             formInput formInput = new formInput();
             formInput.ShowDialog();
         }
+
+        private void inputUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion Events
     }
 }

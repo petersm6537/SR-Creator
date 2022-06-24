@@ -90,7 +90,7 @@ namespace SR_Creator
             writeXML();
             if(createSWInput.Checked = true)
             {
-                getFileDirectory();
+                packAndGo();
             }
 
         }
@@ -156,12 +156,42 @@ namespace SR_Creator
             }
         }
 
+        public void getPackAndGoTemplate()
+        {
+            try
+            {
+                if (slitAngle == "20.5")
+                {
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\20.5 Degree\Design\20.5 Degree-Slitting Fixture.SLDDRW";
+                }
+                if (slitAngle == "25")
+                {
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\25 Degree\Design\25 Degree-Slitting Fixture.SLDDRW";
+                }
+                if (slitAngle == "45")
+                {
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\45 Degree\Design\45 Degree-Slitting Fixture.SLDDRW";
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Error: Slit angle not chosen");
+            }
+        }
+
         public void packAndGo()
         {
+            //Pack and goes the SW drawing to selected location
+
+            //Create solidworks objects
             ModelDoc2 swModelDoc = default(ModelDoc2);
             ModelDocExtension swModelDocExt = default(ModelDocExtension);
             PackAndGo swPackAndGo = default(PackAndGo);
-            getFileDirectory();
+
+            //Get directories
+            getPackAndGoTemplate();
+
 
 
         }

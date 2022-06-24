@@ -54,6 +54,7 @@ namespace SR_Creator
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.createConfigButton = new System.Windows.Forms.Button();
             this.createSWInput = new System.Windows.Forms.CheckBox();
+            this.testButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -138,6 +139,7 @@ namespace SR_Creator
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.testButton);
             this.tabPage1.Controls.Add(this.tableLayoutPanel3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -391,6 +393,16 @@ namespace SR_Creator
             this.createSWInput.Text = "Create Solidwork File";
             this.createSWInput.UseVisualStyleBackColor = true;
             // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(11, 11);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(75, 23);
+            this.testButton.TabIndex = 1;
+            this.testButton.Text = "button1";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
             // formInput
             // 
             this.AcceptButton = this.forwardButton;
@@ -449,5 +461,6 @@ namespace SR_Creator
         private System.Windows.Forms.NumericUpDown inputCrossSection;
         private System.Windows.Forms.NumericUpDown inputThickness;
         private System.Windows.Forms.CheckBox createSWInput;
+        private System.Windows.Forms.Button testButton;
     }
 }

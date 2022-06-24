@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -93,6 +94,11 @@ namespace SR_Creator
                 packAndGo();
             }
 
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            editDimensions();
         }
 
         #endregion Events
@@ -188,9 +194,47 @@ namespace SR_Creator
             ModelDoc2 swModelDoc = default(ModelDoc2);
             ModelDocExtension swModelDocExt = default(ModelDocExtension);
             PackAndGo swPackAndGo = default(PackAndGo);
+            SldWorks.SldWorks swApp = new SldWorks.SldWorks();
 
             //Get directories
             getPackAndGoTemplate();
+
+            //Open drawing
+            swModelDoc = (ModelDoc2)swApp.OpenDoc6(swPackAndGoDirectory, 3,2,"",0,0);
+            swModelDocExt = (ModelDocExtension)swModelDoc.Extension;
+
+            //Get pack and go object
+            swPackAndGo = (PackAndGo)swModelDocExt.GetPackAndGo();
+
+
+            //Adjust properties of pack and go
+            swPackAndGo.IncludeDrawings = true;
+            swPackAndGo.SetSaveToName(true, fileDirectory = Path.GetDirectoryName(filepath));
+            swPackAndGo.AddPrefix = $"{partNumber}-";
+
+            //Pack and go
+            swModelDocExt.SavePackAndGo(swPackAndGo);
+
+        }
+
+        public void editDimensions()
+        {
+            //Creates all solidworks objects
+            ModelDoc2 swModelDoc = default(ModelDoc2);
+            ModelDocExtension swModelDocExt = default(ModelDocExtension);
+            SelectionMgr swSelectionMgr = default(SelectionMgr);
+            //Feature swFeat = default(Feature);
+            SldWorks.SldWorks swApp = new SldWorks.SldWorks();
+            SldWorks.Dimension swInsideDiameter;
+            //Dimension swInsideDiameter = default(Dimension);
+            Sketch swSketch = default(Sketch);
+            //SelectData swSelData = default(SelectData);
+
+            insideDiameter = .625M;
+
+            //sets doc to correct doc
+            swModelDoc = swApp.ActiveDoc;
+            swModelDocExt = swModelDoc.Extension;
 
 
 
@@ -198,6 +242,7 @@ namespace SR_Creator
 
 
         #endregion Methods
+
 
     }
 }

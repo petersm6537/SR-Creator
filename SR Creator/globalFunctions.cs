@@ -25,7 +25,7 @@ namespace SR_Creator
             public static string comments = "Comments";
 
             public static string fileDirectory, swPackAndGoDirectory;
-            public static string staticFileDirectory = @"\\PAI5\SMMC Customers\PAI\Mold Standard Drawings\CNC Slitting Fixtures";
+            public static string staticFileDirectory = @"\\PAI5\Everyone\MMP\PROJECTS\AUTOMATED SLIT RING";
         }
 
 

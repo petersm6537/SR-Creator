@@ -1,4 +1,5 @@
 ﻿using SldWorks;
+using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -173,15 +174,15 @@ namespace SR_Creator
             {
                 if (slitAngle == "20.5")
                 {
-                    swPackAndGoDirectory = $@"{ staticFileDirectory}\20.5 Degree\Design\20.5 Degree-Slitting Fixture.SLDDRW";
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\20.5 Degree\Slitting Fixture.SLDDRW";
                 }
                 if (slitAngle == "25")
                 {
-                    swPackAndGoDirectory = $@"{ staticFileDirectory}\25 Degree\Design\25 Degree-Slitting Fixture.SLDDRW";
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\25 Degree\Slitting Fixture.SLDDRW";
                 }
                 if (slitAngle == "45")
                 {
-                    swPackAndGoDirectory = $@"{ staticFileDirectory}\45 Degree\Design\45 Degree-Slitting Fixture.SLDDRW";
+                    swPackAndGoDirectory = $@"{ staticFileDirectory}\45 Degree\Slitting Fixture.SLDDRW";
                 }
 
             }
@@ -220,30 +221,58 @@ namespace SR_Creator
             //Pack and go
             swModelDocExt.SavePackAndGo(swPackAndGo);
 
+            
+            //Closes the drawing
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            //Opens assembly and edit dims
+            editDimensions();
+
+
+
         }
 
         public void editDimensions()
         {
             //This method is meant to open the solidworks files created, and change the dimension values to the values entered in the form
             //Creates all solidworks objects
-            ModelDoc2 swModelDoc = default(ModelDoc2);
-            ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            SelectionMgr swSelectionMgr = default(SelectionMgr);
-            //Feature swFeat = default(Feature);
             SldWorks.SldWorks swApp = new SldWorks.SldWorks();
-            SldWorks.Dimension swInsideDiameter;
-            //Dimension swInsideDiameter = default(Dimension);
-            Sketch swSketch = default(Sketch);
-            //SelectData swSelData = default(SelectData);
 
-            insideDiameter = .625M;
+            string assemblypath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.sldasm";
+            string drawingpath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.slddrw";
 
-            //sets doc to correct doc
-            swModelDoc = swApp.ActiveDoc;
-            swModelDocExt = swModelDoc.Extension;
+            //Opens assembly and edits dimensions
+
+            ModelDoc2 swModelDoc = swApp.OpenDoc6(assemblypath,2, (int)swOpenDocOptions_e.swOpenDocOptions_Silent,"", 0,0);
+
+            //Creates dimension objects for each dimension
+            Dimension swInsideDiameter = swModelDoc.Parameter($@"D1@Sketch1@{partNumber}-Wearband-Piston.Part");
+            Dimension swCrossSection = swModelDoc.Parameter($@"D2@Sketch1@{partNumber}-Wearband-Piston.Part");
+            Dimension swThickness = swModelDoc.Parameter($@"D1@Boss-Extrude1@{partNumber}-Wearband-Piston.Part");
+            Dimension swSlitThick = swModelDoc.Parameter($@"D2@Sketch2@{partNumber}-Wearband-Piston.Part");
 
 
+            //Sets the values of the dimensions
+            swInsideDiameter.SetValue3(Convert.ToDouble(insideDiameter),2,null);
+            swCrossSection.SetValue3(Convert.ToDouble(crossSection), 2, null);
+            swThickness.SetValue3(Convert.ToDouble(thickness), 2, null);
+            swSlitThick.SetValue3(Convert.ToDouble(slitThickness), 2, null);
 
+            //Rebuilds and saves document
+            swModelDoc.EditRebuild3();
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0,-1);
+
+
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            //Opens drawing rebuilds and saves
+            swModelDoc = swApp.OpenDoc6(drawingpath, 3, 1, "", 0, 0);
+            swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
         }
 
 

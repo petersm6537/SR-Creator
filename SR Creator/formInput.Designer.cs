@@ -35,7 +35,6 @@ namespace SR_Creator
             this.forwardButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.testButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.labelPartNumber = new System.Windows.Forms.Label();
             this.inputPartNumber = new System.Windows.Forms.TextBox();
@@ -139,7 +138,6 @@ namespace SR_Creator
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.testButton);
             this.tabPage1.Controls.Add(this.tableLayoutPanel3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -148,16 +146,6 @@ namespace SR_Creator
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Number";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(11, 11);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(75, 23);
-            this.testButton.TabIndex = 1;
-            this.testButton.Text = "button1";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -461,6 +449,5 @@ namespace SR_Creator
         private System.Windows.Forms.NumericUpDown inputCrossSection;
         private System.Windows.Forms.NumericUpDown inputThickness;
         private System.Windows.Forms.CheckBox createSWInput;
-        private System.Windows.Forms.Button testButton;
     }
 }

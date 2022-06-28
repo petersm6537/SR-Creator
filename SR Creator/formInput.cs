@@ -133,8 +133,9 @@ namespace SR_Creator
                 new XElement("SlitRingDimensions",
                     new XElement("insideDiameter", insideDiameter),
                     new XElement("crossSection", crossSection),
+                    new XElement("Thickness", thickness),
                     new XElement("slitThickness", slitThickness),
-                    new XElement("slitAngle", slitAngle)));
+                    new XElement("slitAngle", slitAngle))) ;
 
             //Creates a save file dialog object
             SaveFileDialog saveFileDialog = new SaveFileDialog();

@@ -142,6 +142,7 @@ namespace SR_Creator
             this.Name = "formHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SR Creator - Home";
+            this.Load += new System.EventHandler(this.formHome_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);

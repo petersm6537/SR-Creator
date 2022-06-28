@@ -21,6 +21,7 @@ namespace SR_Creator
 
         private void inputNew_Click(object sender, EventArgs e)
         {
+            //Open the new slit ring create form
             formInput formInput = new formInput();
             formInput.ShowDialog();
         }
@@ -30,7 +31,16 @@ namespace SR_Creator
 
         }
 
+        private void formHome_Load(object sender, EventArgs e)
+        {
+        }
 
         #endregion Events
+
+        #region Methods
+
+
+
+        #endregion Methods
     }
 }

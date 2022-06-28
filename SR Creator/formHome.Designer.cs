@@ -140,7 +140,6 @@ namespace SR_Creator
             this.MaximumSize = new System.Drawing.Size(400, 400);
             this.MinimumSize = new System.Drawing.Size(350, 350);
             this.Name = "formHome";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SR Creator - Home";
             this.Load += new System.EventHandler(this.formHome_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

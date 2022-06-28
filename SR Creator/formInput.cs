@@ -60,7 +60,7 @@ namespace SR_Creator
 
         private void disableBackButton()
         {
-            // Disables forward button if user is at final tab
+            // Disables back button if user is at final tab
             if (tabControl.SelectedIndex == 0)
             {
                 backButton.Enabled = false;
@@ -74,19 +74,21 @@ namespace SR_Creator
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //If tab index is changed, the form decides if it needs to disable forward or back buttons
             disableForwardButton();
             disableBackButton();
         }
 
         private void formInput_Load(object sender, EventArgs e)
         {
+            //When the form is loaded, the form decides if it needs to disable forward or back buttons
             disableForwardButton();
             disableBackButton();
         }
 
         private void createConfigButton_Click(object sender, EventArgs e)
         {
-            //Dump values into XML, need to be able to check everything is there
+            //Writes and XML, and if box is checked, pack and gos SW files
 
             writeXML();
             if(createSWInput.Checked = true)
@@ -98,6 +100,7 @@ namespace SR_Creator
 
         private void testButton_Click(object sender, EventArgs e)
         {
+            //Testing the editing of SW dimensions
             editDimensions();
         }
 
@@ -109,7 +112,7 @@ namespace SR_Creator
 
         private void writeXML()
         {
-            // Writes all values to an XML document
+            // Writes all values entered in form to an XML document, will be imported into a solidworks file
 
             //Creates new global variable object
             //globalFunctions.globalVariables globalVariables = new globalFunctions.globalVariables();
@@ -132,7 +135,7 @@ namespace SR_Creator
                     new XElement("slitThickness", slitThickness),
                     new XElement("slitAngle", slitAngle)));
 
-            //Enter savefiledialog here
+            //Creates a save file dialog object
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.InitialDirectory = @"C:\Users\Public\Documents";
             saveFileDialog.Filter = "XML files (*.xml)|*.xml";
@@ -164,6 +167,8 @@ namespace SR_Creator
 
         public void getPackAndGoTemplate()
         {
+
+            //Gets the filepath for the correct slit ring template to use based on the "slit angle" selected in the form
             try
             {
                 if (slitAngle == "20.5")
@@ -219,6 +224,7 @@ namespace SR_Creator
 
         public void editDimensions()
         {
+            //This method is meant to open the solidworks files created, and change the dimension values to the values entered in the form
             //Creates all solidworks objects
             ModelDoc2 swModelDoc = default(ModelDoc2);
             ModelDocExtension swModelDocExt = default(ModelDocExtension);

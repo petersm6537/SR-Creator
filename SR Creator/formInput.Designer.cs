@@ -35,6 +35,7 @@ namespace SR_Creator
             this.forwardButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.testButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.labelPartNumber = new System.Windows.Forms.Label();
             this.inputPartNumber = new System.Windows.Forms.TextBox();
@@ -54,7 +55,6 @@ namespace SR_Creator
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.createConfigButton = new System.Windows.Forms.Button();
             this.createSWInput = new System.Windows.Forms.CheckBox();
-            this.testButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -148,6 +148,16 @@ namespace SR_Creator
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Number";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(11, 11);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(75, 23);
+            this.testButton.TabIndex = 1;
+            this.testButton.Text = "button1";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -392,16 +402,6 @@ namespace SR_Creator
             this.createSWInput.TabIndex = 1;
             this.createSWInput.Text = "Create Solidwork File";
             this.createSWInput.UseVisualStyleBackColor = true;
-            // 
-            // testButton
-            // 
-            this.testButton.Location = new System.Drawing.Point(11, 11);
-            this.testButton.Name = "testButton";
-            this.testButton.Size = new System.Drawing.Size(75, 23);
-            this.testButton.TabIndex = 1;
-            this.testButton.Text = "button1";
-            this.testButton.UseVisualStyleBackColor = true;
-            this.testButton.Click += new System.EventHandler(this.testButton_Click);
             // 
             // formInput
             // 

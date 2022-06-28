@@ -22,7 +22,7 @@ namespace SR_Creator
         private void inputNew_Click(object sender, EventArgs e)
         {
             //Open the new slit ring create form
-            formInput formInput = new formInput();
+            SS formInput = new SS();
             formInput.ShowDialog();
         }
 

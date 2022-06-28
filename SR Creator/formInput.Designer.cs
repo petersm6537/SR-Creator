@@ -1,7 +1,7 @@
 ﻿
 namespace SR_Creator
 {
-    partial class formInput
+    partial class SS
     {
         /// <summary>
         /// Required designer variable.
@@ -391,15 +391,14 @@ namespace SR_Creator
             this.createSWInput.Text = "Create Solidwork File";
             this.createSWInput.UseVisualStyleBackColor = true;
             // 
-            // formInput
+            // SS
             // 
             this.AcceptButton = this.forwardButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 311);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "formInput";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "SS";
             this.Text = "SR Creator - Input";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.formInput_Load);

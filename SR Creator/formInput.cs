@@ -16,9 +16,9 @@ using static SR_Creator.globalFunctions.globalVariablesStatic;
 
 namespace SR_Creator
 {
-    public partial class formInput : Form
+    public partial class SS : Form
     {
-        public formInput()
+        public SS()
         {
             InitializeComponent();
         }

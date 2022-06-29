@@ -276,9 +276,29 @@ namespace SR_Creator
             swApp.CloseDoc(swModelDoc.GetPathName());
         }
 
+        public void editDrawing()
+        {
+
+            //Edit partnumber in custom properties
+            SldWorks.SldWorks swApp = new SldWorks.SldWorks();
+            ModelDoc2 swModelDoc = swApp.ActiveDoc;
+            ModelDocExtension swModelDocExtension = swModelDoc.Extension;
+            Configuration swConfig = swModelDoc.GetActiveConfiguration();
+            CustomPropertyManager swCustomPropMgr = swConfig.CustomPropertyManager;
+
+            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText,"M01-X.XXX",(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+
+            swModelDoc.ForceRebuild3(false);
+
+        }
+
+
 
         #endregion Methods
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            editDrawing();
+        }
     }
 }

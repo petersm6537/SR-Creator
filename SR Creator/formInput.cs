@@ -92,17 +92,12 @@ namespace SR_Creator
             //Writes and XML, and if box is checked, pack and gos SW files
 
             writeXML();
-            if(createSWInput.Checked = true)
+
+            if(createSWInput.Checked == true)
             {
-                packAndGo();
+                swFunctions();
             }
 
-        }
-
-        private void testButton_Click(object sender, EventArgs e)
-        {
-            //Testing the editing of SW dimensions
-            editDimensions();
         }
 
         #endregion Events
@@ -123,7 +118,8 @@ namespace SR_Creator
             insideDiameter = inputInsideDiameter.Value;
             crossSection = inputCrossSection.Value;
             thickness = inputThickness.Value;
-            slitThickness = Convert.ToDecimal(inputSlitThickness.Text);
+            try { slitThickness = Convert.ToDecimal(inputSlitThickness.Text); }
+            catch { }
             slitAngle = inputSlitAngle.Text;
             comments = partNumber;
 
@@ -131,6 +127,7 @@ namespace SR_Creator
             XDocument configXML = new XDocument(
                 new XComment($"{comments} XML Configuration DO NOT DELETE"),
                 new XElement("SlitRingDimensions",
+                    new XElement("PartNumber",partNumber),
                     new XElement("insideDiameter", insideDiameter),
                     new XElement("crossSection", crossSection),
                     new XElement("Thickness", thickness),
@@ -203,6 +200,9 @@ namespace SR_Creator
             PackAndGo swPackAndGo = default(PackAndGo);
             SldWorks.SldWorks swApp = new SldWorks.SldWorks();
 
+            swApp.Visible = true;
+            swApp.UserControl = true;
+
             //Get directories
             getPackAndGoTemplate();
 
@@ -239,12 +239,20 @@ namespace SR_Creator
             //Creates all solidworks objects
             SldWorks.SldWorks swApp = new SldWorks.SldWorks();
 
-            string assemblypath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.sldasm";
-            string drawingpath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.slddrw";
+            swApp.Visible = true;
 
+            //Establishes filepaths for all documents to be edited
+            string assemblyPath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.sldasm";
+            string drawingPath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.slddrw";
+            string topPlatePath = $@"{fileDirectory}\{partNumber}-Top Plate.sldprt";
+            string bottomPlatePath = $@"{fileDirectory}\{partNumber}-Bottom Plate.sldprt";
+
+            
+            
+            
+            //SOLIDWORKS ASSEMBLY PORTION
             //Opens assembly and edits dimensions
-
-            ModelDoc2 swModelDoc = swApp.OpenDoc6(assemblypath,2, (int)swOpenDocOptions_e.swOpenDocOptions_Silent,"", 0,0);
+            ModelDoc2 swModelDoc = swApp.OpenDoc6(assemblyPath,2, (int)swOpenDocOptions_e.swOpenDocOptions_Silent,"", 0,0);
 
             //Creates dimension objects for each dimension
             Dimension swInsideDiameter = swModelDoc.Parameter($@"D1@Sketch1@{partNumber}-Wearband-Piston.Part");
@@ -267,28 +275,171 @@ namespace SR_Creator
             //Closes document
             swApp.CloseDoc(swModelDoc.GetPathName());
 
-            //Opens drawing rebuilds and saves
-            swModelDoc = swApp.OpenDoc6(drawingpath, 3, 1, "", 0, 0);
+
+
+            //SOLIDWORKS PARTS PORTION
+            //Opens the top plate and changes engraving
+            swModelDoc = swApp.OpenDoc6(topPlatePath, (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 0, 0);
+            Configuration swConfig = swModelDoc.GetActiveConfiguration();
+            CustomPropertyManager swCustomPropMgr = swConfig.CustomPropertyManager;
+            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText, $@"{partNumber}", (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
             swModelDoc.ForceRebuild3(false);
             swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            //Opens the bottom plate and changes engraving
+            swModelDoc = swApp.OpenDoc6(bottomPlatePath, (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 0, 0);
+            swConfig = swModelDoc.GetActiveConfiguration();
+            swCustomPropMgr = swConfig.CustomPropertyManager;
+            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText, $@"{partNumber}", (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+            swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+
+
+            //SOLIDWORKS DRAWING PORTION
+            //Opens drawing rebuilds and saves
+            swModelDoc = swApp.OpenDoc6(drawingPath, 3, 1, "", 0, 0);
+            swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            swModelDoc.Extension.SaveAs3($@"{drawingPath}.pdf",(int)swSaveAsVersion_e.swSaveAsCurrentVersion,(int)swSaveAsOptions_e.swSaveAsOptions_Silent,null,null,0,0);
+            
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            swApp.ExitApp();
+        }
+
+        public void swFunctions()
+        {
+            //PERFORMS ALL SOLIDWORKS FUNCTIONS IN ONE METHOD
+            //SEEMS TO BE PROBLEMS WHEN CREATING MORE THAN ONE OBJECT
+
+            //Create solidworks objects
+            SldWorks.SldWorks swApp = new SldWorks.SldWorks();
+            
+            swApp.CommandInProgress = true;
+            swApp.UserControl = true;
+
+
+
+            ModelDoc2 swModelDoc = default(ModelDoc2);
+            ModelDocExtension swModelDocExt = default(ModelDocExtension);
+            PackAndGo swPackAndGo = default(PackAndGo);
+
+            
+            //Pack and goes the SW drawing to selected location
+            
+            
+            
+            //Get directories
+            getPackAndGoTemplate();
+
+            //Open drawing
+            //swModelDoc = swApp.OpenDoc6(swPackAndGoDirectory, 3, 2, "", 0, 0);
+
+            swModelDoc = swApp.OpenDoc6(swPackAndGoDirectory, (int)swDocumentTypes_e.swDocDRAWING, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 1,1);
+
+            swModelDocExt = (ModelDocExtension)swModelDoc.Extension;
+
+            //Get pack and go object
+            swPackAndGo = (PackAndGo)swModelDocExt.GetPackAndGo();
+
+
+            //Adjust properties of pack and go
+            swPackAndGo.IncludeDrawings = true;
+            swPackAndGo.SetSaveToName(true, fileDirectory = Path.GetDirectoryName(filepath));
+            swPackAndGo.AddPrefix = $"{partNumber}-";
+
+            //Pack and go
+            swModelDocExt.SavePackAndGo(swPackAndGo);
+
+
+            //Closes the drawing
+            swApp.CloseDoc(swModelDoc.GetPathName());
+            
+            
+            
+            
+            //BEGIN OPENING DOCUMENTS AND EDITING
+
+
+
+
+
+            //Establishes filepaths for all documents to be edited
+            string assemblyPath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.sldasm";
+            string drawingPath = $@"{fileDirectory}\{partNumber}-Slitting Fixture.slddrw";
+            string topPlatePath = $@"{fileDirectory}\{partNumber}-Top Plate.sldprt";
+            string bottomPlatePath = $@"{fileDirectory}\{partNumber}-Bottom Plate.sldprt";
+
+
+
+
+            //SOLIDWORKS ASSEMBLY PORTION
+            //Opens assembly and edits dimensions
+            swModelDoc = swApp.OpenDoc6(assemblyPath, 2, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 0, 0);
+
+            //Creates dimension objects for each dimension
+            Dimension swInsideDiameter = swModelDoc.Parameter($@"D1@Sketch1@{partNumber}-Wearband-Piston.Part");
+            Dimension swCrossSection = swModelDoc.Parameter($@"D2@Sketch1@{partNumber}-Wearband-Piston.Part");
+            Dimension swThickness = swModelDoc.Parameter($@"D1@Boss-Extrude1@{partNumber}-Wearband-Piston.Part");
+            Dimension swSlitThick = swModelDoc.Parameter($@"D2@Sketch2@{partNumber}-Wearband-Piston.Part");
+
+
+            //Sets the values of the dimensions
+            swInsideDiameter.SetValue3(Convert.ToDouble(insideDiameter), 2, null);
+            swCrossSection.SetValue3(Convert.ToDouble(crossSection), 2, null);
+            swThickness.SetValue3(Convert.ToDouble(thickness), 2, null);
+            swSlitThick.SetValue3(Convert.ToDouble(slitThickness), 2, null);
+
+            //Rebuilds and saves document
+            swModelDoc.EditRebuild3();
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, -1);
+
 
             //Closes document
             swApp.CloseDoc(swModelDoc.GetPathName());
-        }
 
-        public void editDrawing()
-        {
 
-            //Edit partnumber in custom properties
-            SldWorks.SldWorks swApp = new SldWorks.SldWorks();
-            ModelDoc2 swModelDoc = swApp.ActiveDoc;
-            ModelDocExtension swModelDocExtension = swModelDoc.Extension;
+
+            //SOLIDWORKS PARTS PORTION
+            //Opens the top plate and changes engraving
+            swModelDoc = swApp.OpenDoc6(topPlatePath, (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 0, 0);
             Configuration swConfig = swModelDoc.GetActiveConfiguration();
             CustomPropertyManager swCustomPropMgr = swConfig.CustomPropertyManager;
-
-            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText,"M01-X.XXX",(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
-
+            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText, $@"{partNumber}", (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
             swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            //Opens the bottom plate and changes engraving
+            swModelDoc = swApp.OpenDoc6(bottomPlatePath, (int)swDocumentTypes_e.swDocPART, (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", 0, 0);
+            swConfig = swModelDoc.GetActiveConfiguration();
+            swCustomPropMgr = swConfig.CustomPropertyManager;
+            swCustomPropMgr.Add3("Part Number", (int)swCustomInfoType_e.swCustomInfoText, $@"{partNumber}", (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+            swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+
+
+            //SOLIDWORKS DRAWING PORTION
+            //Opens drawing rebuilds and saves
+            swModelDoc = swApp.OpenDoc6(drawingPath, 3, 1, "", 0, 0);
+            swModelDoc.ForceRebuild3(false);
+            swModelDoc.Save3((int)swSaveAsOptions_e.swSaveAsOptions_SaveReferenced, 0, 0);
+            swModelDoc.Extension.SaveAs3($@"{drawingPath}.pdf", (int)swSaveAsVersion_e.swSaveAsCurrentVersion, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, null, 0, 0);
+
+            //Closes document
+            swApp.CloseDoc(swModelDoc.GetPathName());
+
+            //swApp.ExitApp();
 
         }
 
@@ -298,7 +449,6 @@ namespace SR_Creator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            editDrawing();
         }
     }
 }

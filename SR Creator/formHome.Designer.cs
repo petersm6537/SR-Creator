@@ -89,6 +89,7 @@ namespace SR_Creator
             // inputImport
             // 
             this.inputImport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputImport.Enabled = false;
             this.inputImport.Location = new System.Drawing.Point(3, 79);
             this.inputImport.Name = "inputImport";
             this.inputImport.Size = new System.Drawing.Size(155, 70);
@@ -99,6 +100,7 @@ namespace SR_Creator
             // inputUpdate
             // 
             this.inputUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputUpdate.Enabled = false;
             this.inputUpdate.Location = new System.Drawing.Point(3, 155);
             this.inputUpdate.Name = "inputUpdate";
             this.inputUpdate.Size = new System.Drawing.Size(155, 70);
@@ -110,6 +112,7 @@ namespace SR_Creator
             // inputSettings
             // 
             this.inputSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputSettings.Enabled = false;
             this.inputSettings.Location = new System.Drawing.Point(3, 231);
             this.inputSettings.Name = "inputSettings";
             this.inputSettings.Size = new System.Drawing.Size(155, 71);

@@ -3,6 +3,7 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -85,12 +86,13 @@ namespace SR_Creator
             //When the form is loaded, the form decides if it needs to disable forward or back buttons
             disableForwardButton();
             disableBackButton();
+            inputPartNumber.Select();
         }
 
         private void createConfigButton_Click(object sender, EventArgs e)
         {
             //Writes and XML, and if box is checked, pack and gos SW files
-
+            
             writeXML();
 
             if(createSWInput.Checked == true)
@@ -446,9 +448,5 @@ namespace SR_Creator
 
 
         #endregion Methods
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

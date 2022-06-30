@@ -54,6 +54,8 @@ namespace SR_Creator
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.createConfigButton = new System.Windows.Forms.Button();
             this.createSWInput = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.inputRevisionNumber = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -116,7 +118,7 @@ namespace SR_Creator
             this.forwardButton.Location = new System.Drawing.Point(167, 3);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(158, 66);
-            this.forwardButton.TabIndex = 5;
+            this.forwardButton.TabIndex = 3;
             this.forwardButton.Text = ">";
             this.forwardButton.UseVisualStyleBackColor = true;
             this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
@@ -133,7 +135,7 @@ namespace SR_Creator
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(328, 227);
-            this.tabControl.TabIndex = 1;
+            this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
@@ -151,14 +153,18 @@ namespace SR_Creator
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.inputRevisionNumber, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.labelPartNumber, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.inputPartNumber, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 195);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -168,7 +174,7 @@ namespace SR_Creator
             this.labelPartNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelPartNumber.Location = new System.Drawing.Point(3, 0);
             this.labelPartNumber.Name = "labelPartNumber";
-            this.labelPartNumber.Size = new System.Drawing.Size(308, 97);
+            this.labelPartNumber.Size = new System.Drawing.Size(308, 48);
             this.labelPartNumber.TabIndex = 0;
             this.labelPartNumber.Text = "Please enter part number:";
             this.labelPartNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -178,7 +184,7 @@ namespace SR_Creator
             this.inputPartNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputPartNumber.Location = new System.Drawing.Point(3, 100);
+            this.inputPartNumber.Location = new System.Drawing.Point(3, 51);
             this.inputPartNumber.Name = "inputPartNumber";
             this.inputPartNumber.Size = new System.Drawing.Size(308, 20);
             this.inputPartNumber.TabIndex = 1;
@@ -391,6 +397,28 @@ namespace SR_Creator
             this.createSWInput.Text = "Create Solidwork File";
             this.createSWInput.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(3, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(308, 48);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Please enter revision #\r\n";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // inputRevisionNumber
+            // 
+            this.inputRevisionNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputRevisionNumber.Location = new System.Drawing.Point(3, 147);
+            this.inputRevisionNumber.Name = "inputRevisionNumber";
+            this.inputRevisionNumber.Size = new System.Drawing.Size(308, 20);
+            this.inputRevisionNumber.TabIndex = 2;
+            this.inputRevisionNumber.Text = "A1";
+            // 
             // SS
             // 
             this.AcceptButton = this.forwardButton;
@@ -448,5 +476,7 @@ namespace SR_Creator
         private System.Windows.Forms.NumericUpDown inputCrossSection;
         private System.Windows.Forms.NumericUpDown inputThickness;
         private System.Windows.Forms.CheckBox createSWInput;
+        private System.Windows.Forms.TextBox inputRevisionNumber;
+        private System.Windows.Forms.Label label6;
     }
 }

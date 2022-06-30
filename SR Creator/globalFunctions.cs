@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace SR_Creator
 
         public static class globalVariablesStatic
         {
-            public static string partNumber;
+            [Required(AllowEmptyStrings =false)]
+            [Range(.0001,5.00)]
+
+            public static string partNumber { get; set; }
+            [Required]
             public static string revisionNumber;
             public static Decimal insideDiameter;
             public static Decimal crossSection;
